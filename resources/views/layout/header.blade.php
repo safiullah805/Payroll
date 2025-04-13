@@ -65,7 +65,7 @@
 				<li class="nav-item dropdown dropdown-user">
 					<a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
 						<img src="{{ asset('assets/global_assets/images/image.png') }}" class="rounded-circle" alt="">
-						<span>Michael Wallas</span>
+						<span>{{ Auth::user()->name }}</span>
 					</a>
 
 					<div class="dropdown-menu dropdown-menu-right">
@@ -74,7 +74,15 @@
 						<a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span class="badge badge-pill bg-blue ml-auto">58</span></a>
 						<div class="dropdown-divider"></div>
 						<a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
-						<a href="#" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+						<!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+							<a href="route('logout')" class="dropdown-item"onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+								<i class="icon-switch2"></i> 
+								{{ __('Log Out') }}
+							</a>
+                        </form>
 					</div>
 				</li>
 			</ul>
@@ -115,7 +123,7 @@
 							</div>
 
 							<div class="media-body">
-								<div class="media-title font-weight-semibold">Michael Wallas</div>
+								<div class="media-title font-weight-semibold">{{ Auth::user()->name }}</div>
 								<div class="font-size-xs opacity-50">
 									<i class="icon-pin font-size-sm"></i> &nbsp;Santa Ana, CA
 								</div>

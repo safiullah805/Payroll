@@ -22,11 +22,9 @@
             <div class="sidebar-content">
                 <!-- Navigation -->
                 <div class="card">
-				<div class="card-body text-center card-img-top" style="background-image: url('{{ asset('assets/global_assets/images/backgrounds/panel_bg.png') }}'); background-size: contain;">
+			    	<div class="card-body text-center card-img-top" style="background-image: url('{{ asset('assets/global_assets/images/backgrounds/panel_bg.png') }}'); background-size: contain;">
 
-                        <div class="card-img-actions d-inline-block mb-3">
-                            <img class="img-fluid rounded-circle" src="{{ asset('assets/global_assets/images/image.png') }}" width="170" height="170" alt="">
-                        </div>
+                        
 
                         <h6 class="font-weight-semibold mb-0">Michael Wallas</h6>
                         <span class="d-block opacity-75">MISOL</span>
@@ -54,7 +52,7 @@
             <!-- Profile Tab -->
             <div class="tab-pane fade active show" id="profile">
 
-                <!-- Profile info -->
+             <!-- Profile info -->
                 <div class="card">
                     <div class="card-header header-elements-inline">
                         <h5 class="card-title">Profile information</h5>
@@ -68,42 +66,46 @@
                                         <input type="number" class="form-control" placeholder="Enter age">
                                     </div>
                                     <div class="col-md-6">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" placeholder="Enter email" value="default@example.com">
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
                                         <label>Payment Type</label>
-                                        <select class="form-control form-control-select2" data-fouc>
+                                        <select class="form-control form-control-select2" data-fouc data-minimum-results-for-search="Infinity">
                                             <option value="per_hour">Per Hour</option>
                                             <option value="fixed_rate">Fixed Rate</option>
                                         </select>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
                                     <div class="col-md-6">
                                         <label>Rate</label>
                                         <input type="text" class="form-control" placeholder="Enter rate">
                                     </div>
+                                </div>
+                            </div>
+                
+                            <div class="form-group">
+                                <div class="row">
                                     <div class="col-md-6">
                                         <label>Frequency</label>
-                                        <select class="form-control form-control-select2" data-fouc>
+                                        <select class="form-control form-control-select2" data-fouc data-minimum-results-for-search="Infinity">
                                             <option value="weekly">Weekly</option>
                                             <option value="bi_weekly">Bi-Weekly</option>
                                             <option value="semi_monthly">Semi-Monthly</option>
                                             <option value="monthly">Monthly</option>
                                         </select>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
                                     <div class="col-md-6">
                                         <label>Staff Loan</label>
                                         <input type="text" class="form-control" placeholder="Enter staff loan">
                                     </div>
                                 </div>
                             </div>
-
+                
                             <div class="text-right">
                                 <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
@@ -111,7 +113,6 @@
                     </div>
                 </div>
                 <!-- /profile info -->
-
                 <!-- Sales stats -->
                 <div class="card">
                     <div class="card-header header-elements-sm-inline">
