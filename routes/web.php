@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
-    return view('login');
+    return redirect('/login');
 });
 
 Route::get('/dashboard', function () {
@@ -28,13 +30,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     /* Employee Routes */
-    Route::get('manage_employee', function () {
-        return view('employee.manage_employee');
-    })->name('manage_employee');
+    Route::get('employees/listing', [EmployeeController::class, 'index'])->name('employees.listing');
 
-    Route::get('employee_profile', function () {
-        return view('employee.employee_profile');
-    })->name('employee_profile');
+    Route::get('employees/add', [EmployeeController::class, 'create'])->name('employee.add');
+    Route::post('employees/create', [EmployeeController::class, 'store'])->name('employee.store');
+
+    Route::get('employees/{employee}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
+    Route::post('employees/{employee}/update', [EmployeeController::class, 'update'])->name('employee.update');
+
+    Route::delete('employees/{employee}', [EmployeeController::class, 'destroy'])->name('employee.delete');
 
     /* Payroll Routes */
     Route::get('calculate_payroll', function () {

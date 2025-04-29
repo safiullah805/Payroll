@@ -5,11 +5,13 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>Payroll - MISOL</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/global_assets/css/icons/icomoon/styles.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('assets/global_assets/css/icons/fontawesome/styles.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/css/bootstrap_limitless.min.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/css/layout.min.css') }}" rel="stylesheet" type="text/css">
@@ -25,11 +27,14 @@
 
 	<!-- Theme JS files -->
 	<script src="{{ asset('assets/js/app.js') }}"></script>
+	<script src="{{ asset('assets/js/sweet_alert.js') }}"></script>
     <script src="{{ asset('assets/global_assets/js/plugins/forms/selects/select2.min.js') }}"></script>
 	<script src="{{ asset('assets/global_assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
     <script src="{{ asset('assets/global_assets/js/demo_pages/form_layouts.js') }}"></script>
     <script src="{{ asset('assets/global_assets/js/demo_pages/form_select2.js') }}"></script>
+	<script src="{{ asset('assets/global_assets/js/plugins/notifications/sweet_alert.min.js') }}"></script>
 	<!-- /theme JS files -->
+
 </head>
 
 <body>
@@ -157,10 +162,10 @@
         </a>
         <ul class="nav nav-group-sub">	
             <li class="nav-item">
-                <a href="{{ route('manage_employee') }}" class="nav-link">Add New Employee</a>
+                <a href="{{ route('employee.add') }}" class="nav-link">Add New Employee</a>
             </li>
 			<li class="nav-item">
-                <a href="{{ route('employee_profile') }}" class="nav-link">Employee Profile</a>
+                <a href="{{ route('employees.listing') }}" class="nav-link">Employee Listing</a>
             </li>
         </ul>
     </li>

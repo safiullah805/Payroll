@@ -21,13 +21,29 @@
         </div>
 
         <div class="card-body">
-            <form action="#" method="post">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <form action="{{ route('employee.store') }}" method="post">
                 @csrf
                 <!-- Name Field -->
                 <div class="form-group row">
-                    <label class="col-lg-3 col-form-label">Name:</label>
+                    <label class="col-lg-3 col-form-label">First Name:</label>
                     <div class="col-lg-9">
-                        <input type="text" name="name" class="form-control" placeholder="Enter employee name">
+                        <input type="text" name="first_name" class="form-control" placeholder="Enter employee First name">
+                    </div>
+                </div>
+                <!-- Name Field -->
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label">Last Name:</label>
+                    <div class="col-lg-9">
+                        <input type="text" name="last_name" class="form-control" placeholder="Enter Last employee name">
                     </div>
                 </div>
                 
@@ -52,8 +68,10 @@
                     <label class="col-lg-3 col-form-label">Salary Type</label>
                     <div class="col-lg-9">
                         <select class="form-control select" name="salary_type">
-                            <option value="fixed_salary">Fixed Salary</option>
-                            <option value="per_hour">Per Hour</option>
+                            <option value="" selected disabled>Select</option>
+                            @foreach ($salaryTypes as $salaryType)
+                                <option value="{{ $salaryType->id }}">{{ $salaryType->type }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -73,10 +91,10 @@
                     <label class="col-lg-3 col-form-label">Payment Frequency:</label>
                     <div class="col-lg-9">
                         <select class="form-control select" name="payment_frequency">
-                            <option value="weekly">Weekly</option>
-                            <option value="bi_weekly">Bi Weekly</option>
-                            <option value="monthly">Monthly</option>
-                            <option value="semi_monthly">Semi-Monthly</option>
+                            <option value="" selected disabled>Select</option>
+                            @foreach ($paymentFrequency as $frequency)
+                                <option value="{{ $frequency->id }}">{{ $frequency->frequency }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

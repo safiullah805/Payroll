@@ -23,11 +23,7 @@
                 <!-- Navigation -->
                 <div class="card">
 			    	<div class="card-body text-center card-img-top" style="background-image: url('{{ asset('assets/global_assets/images/backgrounds/panel_bg.png') }}'); background-size: contain;">
-
-                        
-
-                        <h6 class="font-weight-semibold mb-0">Michael Wallas</h6>
-                        <span class="d-block opacity-75">MISOL</span>
+                        <h6 class="font-weight-semibold mb-0">{{ $employee->first_name." ". $employee->last_name }}</h6>
                     </div>
 
                     <div class="card-body p-0">
@@ -58,16 +54,26 @@
                         <h5 class="card-title">Profile information</h5>
                     </div>
                     <div class="card-body">
-                        <form action="#">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form action="{{ route('employee.update', ['employee' => $employee->id]) }}" method="post">
+                            @csrf
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Age</label>
-                                        <input type="number" class="form-control" placeholder="Enter age">
+                                        <input type="number" name="age" class="form-control" value="{{ $employee->age }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label>Email</label>
-                                        <input type="email" class="form-control" placeholder="Enter email" value="default@example.com">
+                                        <input type="email" name="email" class="form-control" value="{{ $employee->email }}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -75,15 +81,16 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Payment Type</label>
-                                        <select class="form-control form-control-select2" data-fouc data-minimum-results-for-search="Infinity">
-                                            <option value="per_hour">Per Hour</option>
-                                            <option value="fixed_rate">Fixed Rate</option>
+                                        <label>Salary Type</label>
+                                        <select class="form-control form-control-select2" name="salary_type">
+                                            @foreach ($salaryTypes as $salaryType)
+                                                <option value="{{ $salaryType->id }}" {{ $salaryType->id == $employee->salary_type_id ? 'selected' : '' }} > {{ $salaryType->type }} </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Rate</label>
-                                        <input type="text" class="form-control" placeholder="Enter rate">
+                                        <input type="text" name="rate" class="form-control" value="{{ $employee->rate }}">
                                     </div>
                                 </div>
                             </div>
@@ -92,23 +99,27 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Frequency</label>
-                                        <select class="form-control form-control-select2" data-fouc data-minimum-results-for-search="Infinity">
-                                            <option value="weekly">Weekly</option>
-                                            <option value="bi_weekly">Bi-Weekly</option>
-                                            <option value="semi_monthly">Semi-Monthly</option>
-                                            <option value="monthly">Monthly</option>
+                                        <select class="form-control form-control-select2" name="payment_frequency">
+                                            @foreach ($paymentFrequency as $frequency)
+                                                <option value="{{ $frequency->id }}" {{ $frequency->id == $employee->payment_frequency_id ? 'selected' : '' }} > {{ $frequency->frequency }} </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Staff Loan</label>
-                                        <input type="text" class="form-control" placeholder="Enter staff loan">
+                                        <input type="text" name="staff_loan_amount" class="form-control" value="{{ $employee->staff_loan_amount ?? "-"}}">
                                     </div>
                                 </div>
                             </div>
-                
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                            </div>
+                            <div class="d-flex bd-highlight mb-3">
+                                <div class="p-2 bd-highlight">
+                                    <a href="{{ route('employees.listing') }}" class="btn btn-danger">Cancel</a>
+                                </div>
+
+                                <div class="ml-auto p-2 bd-highlight">
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                              </div>
                         </form>
                     </div>
                 </div>
